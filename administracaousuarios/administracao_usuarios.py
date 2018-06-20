@@ -356,7 +356,7 @@ class AdministracaoUsuarios:
         existe = False
 
         try:
-            conn = psycopg2.connect("dbname='db_nirf_7' user='testador' host='localhost' password='0t1e0s7t2a0d1o5r'")
+            conn = psycopg2.connect("dbname='db_nirf_7' user='testador' host='10.50.5.106' password='0t1e0s7t2a0d1o5r'")
             cur = conn.cursor()
             cur.execute("""SELECT * FROM responsavel_tecnico""")
             rows = cur.fetchall()
