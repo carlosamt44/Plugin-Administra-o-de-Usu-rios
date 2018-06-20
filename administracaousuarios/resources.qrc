@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/administracao_usuarios" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
