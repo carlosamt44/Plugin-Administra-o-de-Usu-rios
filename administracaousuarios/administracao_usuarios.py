@@ -321,22 +321,22 @@ class AdministracaoUsuarios:
         #sql = "INSERT INTO responsavel_tecnico (nome, matricula, senha) VALUES ('" + nome + "', '" + matricula + "', '" + SenhaDigitada + "');"
         sql = "INSERT INTO usuarios (nome, matricula, senha) VALUES ('" + nome + "', '" + matricula + "', '" + SenhaDigitada + "');"
 
-        #try:
+        try:
 
-        #conn = psycopg2.connect("dbname='db_nirf_7' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
-        conn = psycopg2.connect("dbname='controle_usuarios' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
-        cur = conn.cursor()
-        cur.execute(sql)
-        conn.commit()
-        cur.close ()
+            #conn = psycopg2.connect("dbname='db_nirf_7' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
+            conn = psycopg2.connect("dbname='controle_usuarios' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
+            cur = conn.cursor()
+            cur.execute(sql)
+            conn.commit()
+            cur.close ()
 
-        if self.UpdateResTec(nome, matricula, SenhaHashed, SenhaDigitada):
-            executado = True
-        else:
+            if self.UpdateResTec(nome, matricula, SenhaHashed, SenhaDigitada):
+                executado = True
+            else:
+                executado = False
+
+        except:
             executado = False
-
-        #except:
-            #executado = False
         return executado
 
     def UpdateResTec(self, nome, matricula, SenhaHashed, SenhaDigitada):
