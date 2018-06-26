@@ -298,10 +298,12 @@ class AdministracaoUsuarios:
                     NovoUsuario = True
 
     def UpdateUsuario(self, nome, NovaSenha, hashed_NovaSenha, SenhaDigitada, matricula):
-        sql = """UPDATE responsavel_tecnico SET nome = %s, senha = %s WHERE matricula = %s"""
+        #sql = """UPDATE responsavel_tecnico SET nome = %s, senha = %s WHERE matricula = %s"""
+        sql = """UPDATE usuarios SET nome = %s, senha = %s WHERE matricula = %s"""
 
         try:
-            conn = psycopg2.connect("dbname='db_nirf_7' user='" + matricula + "' host='10.50.5.106' password='" + SenhaDigitada + "'")
+            #conn = psycopg2.connect("dbname='db_nirf_7' user='" + matricula + "' host='10.50.5.106' password='" + SenhaDigitada + "'")
+            conn = psycopg2.connect("dbname='controle_usuarios' user='" + matricula + "' host='10.50.5.106' password='" + SenhaDigitada + "'")
             cur = conn.cursor()
             cur.execute(sql, (nome, NovaSenha, matricula))
             conn.commit()
@@ -316,10 +318,12 @@ class AdministracaoUsuarios:
         return executado
 
     def InsertResTec(self, id, nome, SenhaDigitada, SenhaHashed, matricula):
-        sql = "INSERT INTO responsavel_tecnico (nome, matricula, senha) VALUES ('" + nome + "', '" + matricula + "', '" + SenhaDigitada + "');"
+        #sql = "INSERT INTO responsavel_tecnico (nome, matricula, senha) VALUES ('" + nome + "', '" + matricula + "', '" + SenhaDigitada + "');"
+        sql = "INSERT INTO usuarios (nome, matricula, senha) VALUES ('" + nome + "', '" + matricula + "', '" + SenhaDigitada + "');"
 
         try:
-            conn = psycopg2.connect("dbname='db_nirf_7' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
+            #conn = psycopg2.connect("dbname='db_nirf_7' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
+            conn = psycopg2.connect("dbname='controle_usuarios' user='iniciante' host='10.50.5.106' password='1A9c1E0s2S0o115'")
             cur = conn.cursor()
             cur.execute(sql)
             conn.commit()
@@ -334,10 +338,12 @@ class AdministracaoUsuarios:
         return executado
 
     def UpdateResTec(self, nome, matricula, SenhaHashed, SenhaDigitada):
-        sql = """UPDATE responsavel_tecnico SET nome = %s, senha = %s WHERE matricula = %s"""
+        #sql = """UPDATE responsavel_tecnico SET nome = %s, senha = %s WHERE matricula = %s"""
+        sql = """UPDATE usuarios SET nome = %s, senha = %s WHERE matricula = %s"""
 
         try:
-            conn = psycopg2.connect("dbname='db_nirf_7' user='" + matricula + "' host='10.50.5.106' password='" + SenhaDigitada + "'")
+            #conn = psycopg2.connect("dbname='db_nirf_7' user='" + matricula + "' host='10.50.5.106' password='" + SenhaDigitada + "'")
+            conn = psycopg2.connect("dbname='controle_usuarios' user='" + matricula + "' host='10.50.5.106' password='" + SenhaDigitada + "'")
             cur = conn.cursor()
             cur.execute(sql, (nome, SenhaHashed, matricula))
             conn.commit()
@@ -356,9 +362,11 @@ class AdministracaoUsuarios:
         existe = False
 
         try:
-            conn = psycopg2.connect("dbname='db_nirf_7' user='testador' host='10.50.5.106' password='0t1e0s7t2a0d1o5r'")
+            #conn = psycopg2.connect("dbname='db_nirf_7' user='testador' host='10.50.5.106' password='0t1e0s7t2a0d1o5r'")
+            conn = psycopg2.connect("dbname='controle_usuarios' user='testador' host='10.50.5.106' password='0t1e0s7t2a0d1o5r'")
             cur = conn.cursor()
-            cur.execute("""SELECT * FROM responsavel_tecnico""")
+            #cur.execute("""SELECT * FROM responsavel_tecnico""")
+            cur.execute("""SELECT * FROM usuarios""")
             rows = cur.fetchall()
             for row in rows:
                 if matricula == row[2]:
